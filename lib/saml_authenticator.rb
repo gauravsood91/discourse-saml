@@ -57,7 +57,7 @@ class SamlAuthenticator < ::Auth::ManagedAuthenticator
 
   def setup_strategy(strategy)
     strategy.options.deep_merge!(
-      issuer: SamlAuthenticator.saml_base_url,
+      issuer: Discourse.base_url,
       idp_sso_target_url: setting(:target_url),
       idp_slo_target_url: setting(:slo_target_url).presence,
       slo_default_relay_state: SamlAuthenticator.saml_base_url,
@@ -67,7 +67,7 @@ class SamlAuthenticator < ::Auth::ManagedAuthenticator
       idp_cert_multi: idp_cert_multi,
       request_attributes: request_attributes,
       attribute_statements: attribute_statements,
-      assertion_consumer_service_url: SamlAuthenticator.saml_base_url + "/auth/#{name}/callback",
+      assertion_consumer_service_url: Discourse.base_url + "/auth/saml/callback",
       single_logout_service_url: SamlAuthenticator.saml_base_url + "/auth/#{name}/slo",
       name_identifier_format: setting(:name_identifier_format).presence,
       request_method: (setting(:request_method)&.downcase == "post") ? "POST" : "GET",
