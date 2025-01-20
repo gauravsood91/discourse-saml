@@ -211,7 +211,7 @@ class SamlAuthenticator < ::Auth::ManagedAuthenticator
     #groups_fullsync = setting(:groups_fullsync)
     groups_fullsync = true
     #raw_group_list = attributes.multi(setting(:groups_attribute)) || []
-    raw_group_list = attributes.multi("groups") || []
+    raw_group_list = attributes.multi("role") || []
     user_group_list = raw_group_list.map { |g| g.downcase.split(",") }.flatten
 
     if setting(:groups_ldap_leafcn).present?
