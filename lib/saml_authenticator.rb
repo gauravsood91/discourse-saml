@@ -206,9 +206,10 @@ class SamlAuthenticator < ::Auth::ManagedAuthenticator
   end
 
   def sync_groups(user, attributes, info)
-    return if setting(:sync_groups).blank?
+    #return if setting(:sync_groups).blank?
 
-    groups_fullsync = setting(:groups_fullsync)
+    #groups_fullsync = setting(:groups_fullsync)
+    groups_fullsync = true
     raw_group_list = attributes.multi(setting(:groups_attribute)) || []
     user_group_list = raw_group_list.map { |g| g.downcase.split(",") }.flatten
 
